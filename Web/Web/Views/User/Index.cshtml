@@ -1,0 +1,67 @@
+﻿@model List<Data.Data.User>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Usuario</h5>
+        <p>
+            <a href="@Url.Action("Create")" class="btn btn-primary">
+                <i class="bi bi-plus-lg"></i> Nuevo usuario
+            </a>
+        </p>
+        <table class="table datatable table-striped">
+            <thead>
+                <tr>
+                    <th valign="middle">Nombres</th>
+                    <th valign="middle">Apellidos</th>
+                    <th valign="middle">Documento de identidad</th>
+                    <th valign="middle">Nombre de usuario</th>
+                    <th valign="middle">Fecha de creación</th>
+                    <th valign="middle">Estado</th>
+                    <th valign="middle">Nombre rol</th>
+                    <th valign="middle">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.SecondName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FirstLastName) @Html.DisplayFor(modelItem => item.SecondLastName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DocumentId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.User1)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CreationDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Rol.Name)
+                        </td>
+                        <td>
+                            <a href="@Url.Action("Create", new { id = item.Id })" class="btn btn-success">
+                                <i class="bi bi-pencil-square"></i>
+                            </a>
+                            <a href="@Url.Action("Delete", new { id = item.Id })" class="btn btn-danger">
+                                <i class="bi bi-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

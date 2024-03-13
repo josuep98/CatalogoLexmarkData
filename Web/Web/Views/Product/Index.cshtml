@@ -1,0 +1,75 @@
+﻿@model List<Data.Data.Product>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Productos</h5>
+        <p>
+            <a href="@Url.Action("Create")" class="btn btn-primary">
+                <i class="bi bi-plus-lg"></i> Nuevo producto
+            </a>
+        </p>
+        <table class="table datatable table-striped">
+            <thead>
+                <tr>
+                    <th valign="middle">Imagen</th> 
+                    <th valign="middle">Modelo</th>
+                    <th valign="middle">Número de parte</th>
+                    <th valign="middle">Velocidad impresión</th>
+                    <th valign="middle">Máximo mensual</th>
+                    <th valign="middle">Rec. mensual</th>
+                    <th valign="middle">Detalles</th>
+                    <th valign="middle">Precio</th>
+                    <th valign="middle">Categoría</th>
+                    <th valign="middle">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <Img src="@Html.DisplayFor(modelItem => item.Image)" width="30px" />
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Model)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NumberPart)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PrintSpeed)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MaxMonthly)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.RecMonthly)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Detail)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Pvp)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Category.Name)
+                        </td>
+                        <td>
+                            <a href="@Url.Action("Create", new { id = item.Id })" class="btn btn-success">
+                                <i class="bi bi-pencil-square"></i>
+                            </a>
+                            <a href="@Url.Action("Delete", new { id = item.Id })" class="btn btn-danger">
+                                <i class="bi bi-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

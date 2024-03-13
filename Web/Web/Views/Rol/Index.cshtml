@@ -1,0 +1,49 @@
+﻿@model List<Data.Data.Rol>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Rol</h5>
+        <p>
+            <a href="@Url.Action("Create")" class="btn btn-primary">
+                <i class="bi bi-plus-lg"></i> Nuevo rol
+            </a>
+        </p>
+        <table class="table datatable table-striped">
+            <thead>
+                <tr>
+                    <th>Nombre rol</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </td>
+                        <td>
+                            <a href="@Url.Action("Create", new { id = item.Id })" class="btn btn-success">
+                                <i class="bi bi-pencil-square"></i> Editar
+                            </a>
+                            |
+                            <a href="@Url.Action("Delete", new { id = item.Id })" class="btn btn-danger">
+                                <i class="bi bi-trash"></i> Eliminar
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>
